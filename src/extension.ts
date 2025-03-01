@@ -5,7 +5,6 @@ export function activate(context: vscode.ExtensionContext) {
         const languages = ['JavaScript', 'Python', 'Java', 'C++'];
     const structures = ['Array', 'LinkedList', 'Stack', 'Queue', 'Tree', 'MaxHeap', 'MinHeap', 'PriorityQueue', 'AVL Tree'];
         
-        // Проверяем наличие активного редактора сразу
         const editor = vscode.window.activeTextEditor;
         if (!editor) {
             vscode.window.showErrorMessage('Пожалуйста, откройте файл для вставки кода');
@@ -26,7 +25,6 @@ export function activate(context: vscode.ExtensionContext) {
 
         const snippet = getSnippetFor(selectedLang, selectedStructure);
         
-        // Вставляем код в начало файла
         editor.edit(editBuilder => {
             const position = new vscode.Position(0, 0);
             editBuilder.insert(position, snippet);
